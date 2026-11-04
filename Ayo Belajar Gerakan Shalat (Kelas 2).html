@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayo Belajar Gerakan Shalat</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#FFF3B0;--sky2:#FFD93B;--grass:#3DAA5C;--green:#1F7A3E;--card:#FFFDF0;--text:#1B3B26;--accent:#FFC81E;--ok:#2E9B4F;--bad:#D9590F;--okbg:#DFF5E3;--badbg:#FFE7D6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky:#2B3A1B;--sky2:#4A4A12;--grass:#1D5A30;--green:#8BE0A4;--card:#1F2F22;--text:#F5F0C8;--accent:#E6B800;--ok:#6FD88B;--bad:#FF9A66;--okbg:#1E4A2A;--badbg:#4A2E1C;color-scheme:dark}}
+:root[data-theme="dark"]{--sky:#2B3A1B;--sky2:#4A4A12;--grass:#1D5A30;--green:#8BE0A4;--card:#1F2F22;--text:#F5F0C8;--accent:#E6B800;--ok:#6FD88B;--bad:#FF9A66;--okbg:#1E4A2A;--badbg:#4A2E1C;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Baloo 2","Comic Sans MS","Trebuchet MS",sans-serif;font-size:18px;color:var(--text);background:linear-gradient(var(--sky2),var(--sky) 60%,var(--sky));overflow-x:hidden}
+.bg{position:fixed;left:0;right:0;bottom:0;height:34vh;z-index:0;pointer-events:none}
+.bg svg{width:100%;height:100%}
+.cloud{position:fixed;font-size:46px;z-index:0;opacity:.85;animation:drift 22s linear infinite}
+.c2{top:14%;animation-duration:30s;animation-delay:-12s;font-size:36px}
+.c1{top:6%}
+@keyframes drift{from{left:-80px}to{left:100%}}
+.stage{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:12px 14px 96px}
+.top{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--green)}
+.dots{display:flex;gap:6px;margin-left:auto}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--card);border:2px solid var(--green)}
+.dot.on{background:var(--accent);transform:scale(1.25)}
+.slide{display:none}
+.slide.on{display:block;animation:pop .45s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:4px solid var(--green);border-radius:26px;padding:18px;margin-top:10px;box-shadow:0 6px 0 var(--green)}
+h1{font-size:2rem;margin:.2em 0;color:var(--green);line-height:1.1}
+h2{font-size:1.5rem;margin:.1em 0 .4em;color:var(--green)}
+p{margin:.35em 0;line-height:1.35}
+.center{text-align:center}
+.big{font-size:84px;display:inline-block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-4deg)}}
+.badge{display:inline-block;background:var(--accent);color:#1B3B26;border-radius:999px;padding:4px 14px;font-weight:700;margin:3px}
+.id{display:grid;gap:4px;margin-top:10px;text-align:left;max-width:420px;margin-inline:auto}
+.btn{font:inherit;font-weight:700;font-size:1.05rem;background:var(--accent);color:#1B3B26;border:3px solid var(--green);border-radius:999px;padding:8px 22px;cursor:pointer;box-shadow:0 4px 0 var(--green);transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--green)}
+.btn.alt{background:var(--card);color:var(--text)}
+.btn:disabled{opacity:.45;cursor:default}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:space-between;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));max-width:880px;margin:0 auto}
+.goals li{margin:8px 0;list-style:none;font-size:1.15rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.mini{background:var(--card);border:3px solid var(--green);border-radius:20px;padding:8px;text-align:center;cursor:pointer;transition:transform .15s}
+.mini:hover{transform:translateY(-4px) rotate(-1deg)}
+.mini .n{display:inline-block;background:var(--green);color:var(--card);width:28px;height:28px;border-radius:50%;line-height:28px;font-weight:700}
+.mini h3{margin:2px 0;font-size:1.05rem;color:var(--green)}
+.mini p{font-size:.9rem}
+.fig{width:100%;max-width:210px;height:auto;background:#FFF8D6;border-radius:18px;border:3px solid var(--accent);display:block;margin:0 auto}
+.actbox{display:grid;gap:12px;align-items:center;grid-template-columns:minmax(0,1fr)}
+@media(min-width:640px){.actbox{grid-template-columns:260px 1fr}}
+.say{background:var(--okbg);border-radius:18px;padding:12px;border:3px dashed var(--ok)}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.opt{border:4px solid var(--green);background:var(--card);border-radius:18px;padding:4px;cursor:pointer}
+.opt svg{width:100%;height:auto;border-radius:12px;background:#FFF8D6;display:block}
+.opt.ok{border-color:var(--ok);background:var(--okbg);animation:bob .6s 2}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.fb{margin-top:12px;padding:12px;border-radius:18px;font-weight:700;display:none}
+.fb.ok{display:block;background:var(--okbg);border:3px solid var(--ok)}
+.fb.bad{display:block;background:var(--badbg);border:3px solid var(--bad)}
+.stars{font-size:46px;letter-spacing:4px}
+.chk{display:block;margin:8px 0;font-size:1.05rem}
+.chk input{width:22px;height:22px;vertical-align:middle;margin-right:8px;accent-color:var(--green)}
+.moods{display:flex;gap:10px;justify-content:center;margin:8px 0}
+.moods button{font-size:34px;background:var(--card);border:3px solid var(--green);border-radius:50%;width:60px;height:60px;cursor:pointer}
+.moods button.on{background:var(--accent);transform:scale(1.15)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="cloud c1">☁️</div><div class="cloud c2">☁️</div>
+<div class="bg"><svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+<rect y="130" width="400" height="30" fill="var(--grass)"/>
+<g stroke="#1F7A3E" stroke-width="2.5">
+<rect x="70" y="52" width="22" height="80" fill="#FFF8D6"/><path d="M68 52 L81 28 L94 52Z" fill="#1F7A3E"/>
+<rect x="308" y="52" width="22" height="80" fill="#FFF8D6"/><path d="M306 52 L319 28 L332 52Z" fill="#1F7A3E"/>
+<rect x="120" y="85" width="160" height="47" fill="#FFF8D6"/>
+<path d="M135 85 A65 60 0 0 1 265 85Z" fill="#2E9B4F"/>
+<path d="M188 132 V110 a12 12 0 0 1 24 0 V132Z" fill="#1F7A3E"/></g>
+<line x1="200" y1="25" x2="200" y2="14" stroke="#1F7A3E" stroke-width="2.5"/><circle cx="200" cy="10" r="6" fill="#FFC81E"/>
+<circle cx="81" cy="70" r="5" fill="#FFC81E"/><circle cx="319" cy="70" r="5" fill="#FFC81E"/>
+<circle cx="145" cy="105" r="6" fill="#FFC81E"/><circle cx="255" cy="105" r="6" fill="#FFC81E"/>
+</svg></div>
+
+<div class="stage">
+<div class="top"><span>🕌 Belajar Shalat</span><div class="dots" id="dots"></div></div>
+
+<!-- 1 Pembuka -->
+<section class="slide on"><div class="card center">
+<div class="big">🕌</div>
+<h1>Ayo Belajar Gerakan Shalat!</h1>
+<p>Media Pembelajaran Interaktif</p>
+<span class="badge">Pendidikan Agama Islam dan Budi Pekerti</span><span class="badge">Kelas 2 SD</span>
+<div class="id"><p>📖 Materi: Gerakan Shalat</p><p>👩‍🏫 Guru: ______________</p><p>🧒 Nama: ______________</p></div>
+<p style="margin-top:14px">Tekan tombol <b>Lanjut</b> untuk mulai ya!</p>
+</div></section>
+
+<!-- 2 Tujuan -->
+<section class="slide"><div class="card">
+<h2>🎯 Tujuan Belajar Kita</h2>
+<ul class="goals" style="padding:0">
+<li>🌟 Aku bisa menyebutkan gerakan-gerakan shalat.</li>
+<li>🌟 Aku bisa menirukan gerakan shalat dengan benar.</li>
+<li>🌟 Aku bisa mengurutkan gerakan shalat.</li>
+</ul>
+<p class="center"><span class="badge">Shalat dengan tenang, shalat dengan senang 😊</span></p>
+</div></section>
+
+<!-- 3 Materi -->
+<section class="slide"><div class="card">
+<h2>📚 Gerakan Shalat</h2>
+<p>Ayo kenali gerakan shalat. Sentuh kartunya ya!</p>
+<div class="grid" id="mat"></div>
+<p id="matinfo" class="say" style="margin-top:12px">Terakhir, kita <b>salam</b>: menoleh ke kanan lalu ke kiri.</p>
+</div></section>
+
+<!-- 4 Aktivitas -->
+<section class="slide"><div class="card">
+<h2>🤸 Ayo Tirukan!</h2>
+<div class="actbox">
+<div><svg id="actfig" class="fig" viewBox="0 0 120 100"></svg></div>
+<div>
+<p><span class="badge" id="actstep"></span></p>
+<h1 id="actname" style="font-size:1.8rem"></h1>
+<p id="actdesc"></p>
+<p class="say" id="actsay">Tekan <b>Mulai</b>, lalu tirukan gerakannya!</p>
+</div></div>
+<div class="center" style="margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<button class="btn" id="actplay">▶ Mulai</button>
+<button class="btn alt" id="actnext">Gerakan berikutnya ➜</button>
+</div></div></section>
+
+<!-- 5 Kuis -->
+<section class="slide"><div class="card">
+<h2>✏️ Kuis: Cocokkan Gambar <span class="badge" id="qno"></span></h2>
+<p id="qtext"></p>
+<div class="opts" id="opts"></div>
+<div class="fb" id="fb"></div>
+<div class="center" style="margin-top:12px"><button class="btn" id="qnext" disabled>Soal berikutnya ➜</button></div>
+</div></section>
+
+<!-- 6 Umpan balik -->
+<section class="slide"><div class="card center">
+<h2>🎉 Hasil dan Refleksi</h2>
+<div class="stars" id="stars"></div>
+<h1 id="score" style="font-size:1.8rem"></h1>
+<p id="msg"></p>
+<div style="text-align:left;max-width:460px;margin:10px auto">
+<p><b>Refleksi: centang yang sudah kamu bisa</b></p>
+<label class="chk"><input type="checkbox"> Aku tahu nama gerakan shalat</label>
+<label class="chk"><input type="checkbox"> Aku bisa menirukan gerakan shalat</label>
+<label class="chk"><input type="checkbox"> Aku mau shalat dengan tenang</label>
+</div>
+<p><b>Bagaimana perasaanmu hari ini?</b></p>
+<div class="moods" id="moods"><button>😄</button><button>🙂</button><button>😐</button></div>
+<p id="moodmsg"></p>
+<button class="btn" id="again">🔁 Ulangi kuis</button>
+</div></section>
+</div>
+
+<div class="nav"><button class="btn alt" id="prev">⬅ Kembali</button><button class="btn" id="next">Lanjut ➜</button></div>
+
+<script>
+const S='stroke="#1F7A3E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"';
+const L=p=>`<polyline points="${p}" ${S}/>`;
+const H=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r||10}" fill="#FFD9A8" stroke="#1F7A3E" stroke-width="3"/><path d="M${x-r} ${y-2} A${r} ${r} 0 0 1 ${x+r} ${y-2}Z" fill="#2E9B4F"/>`;
+const legs=L("60,62 52,92")+L("60,62 68,92");
+const P={
+ takbir:L("60,30 60,62")+legs+L("60,36 74,30 72,16")+H(60,20),
+ ruku:L("40,56 76,56")+L("40,56 40,92")+L("72,56 42,78")+H(88,54),
+ itidal:L("60,30 60,62")+legs+L("62,36 66,62")+H(60,20),
+ sujud:L("18,90 50,88 38,62")+L("38,62 76,76")+L("74,76 82,92")+H(86,84,9),
+ duduk:L("28,92 64,90 44,74")+L("44,74 44,40")+L("44,46 58,78")+H(44,28)
+};
+const fig=k=>`<line x1="4" x2="116" y1="94" y2="94" stroke="#E0B400" stroke-width="3"/>`+P[k];
+const svg=(k,c)=>`<svg viewBox="0 0 120 100" class="${c||''}">${fig(k)}</svg>`;
+const D=[
+ {k:"takbir",n:"Takbiratul Ihram",d:"Berdiri tegak. Angkat kedua tangan sejajar telinga, lalu ucapkan “Allahu Akbar”.",e:"Takbiratul Ihram itu berdiri tegak, kedua tangan diangkat sejajar telinga."},
+ {k:"ruku",n:"Rukuk",d:"Membungkuk. Punggung rata dan kedua tangan memegang lutut.",e:"Rukuk itu membungkuk dengan punggung rata, tangan memegang lutut."},
+ {k:"itidal",n:"I’tidal",d:"Bangun dari rukuk. Berdiri tegak lagi, tangan lurus di samping badan.",e:"I’tidal itu berdiri tegak lagi setelah rukuk, tangan lurus ke bawah."},
+ {k:"sujud",n:"Sujud",d:"Dahi, hidung, dua tangan, dua lutut, dan ujung kaki menempel di lantai.",e:"Sujud itu dahi dan hidung menempel di lantai, badan merendah."},
+ {k:"duduk",n:"Duduk di Antara Dua Sujud",d:"Duduk dengan tenang. Kedua tangan diletakkan di atas paha.",e:"Duduk di antara dua sujud itu duduk tegak dan tenang, tangan di atas paha."}
+];
+const $=id=>document.getElementById(id);
+const slides=[...document.querySelectorAll('.slide')];let cur=0;
+$('dots').innerHTML=slides.map(()=>'<span class="dot"></span>').join('');
+function go(i){cur=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('on',j===cur));
+ [...$('dots').children].forEach((d,j)=>d.classList.toggle('on',j===cur));
+ $('prev').disabled=cur===0;$('next').disabled=cur===slides.length-1;stopAct();window.scrollTo(0,0);}
+$('prev').onclick=()=>go(cur-1);$('next').onclick=()=>go(cur+1);
+
+// Materi
+$('mat').innerHTML=D.map((x,i)=>`<div class="mini" data-i="${i}">${svg(x.k,'fig')}<span class="n">${i+1}</span><h3>${x.n}</h3><p>${x.d}</p></div>`).join('');
+document.querySelectorAll('.mini').forEach(m=>m.onclick=()=>{const x=D[m.dataset.i];$('matinfo').innerHTML=`Gerakan ke-${+m.dataset.i+1}: <b>${x.n}</b>. ${x.d}`;});
+
+// Aktivitas
+let a=0,timer=null;
+function showAct(i){a=i%D.length;const x=D[a];$('actfig').innerHTML=fig(x.k);$('actfig').style.animation='none';void $('actfig').offsetWidth;$('actfig').style.animation='pop .5s ease';
+ $('actstep').textContent=`Gerakan ${a+1} dari 5`;$('actname').textContent=x.n;$('actdesc').textContent=x.d;
+ $('actsay').innerHTML=`Ayo tirukan! Tahan sambil hitung <b>1… 2… 3…</b> 😊`;}
+function stopAct(){if(timer){clearInterval(timer);timer=null;$('actplay').textContent='▶ Mulai';}}
+$('actplay').onclick=()=>{if(timer){stopAct();return;}showAct(0);$('actplay').textContent='⏸ Berhenti';
+ timer=setInterval(()=>{if(a>=D.length-1){stopAct();$('actsay').innerHTML='🎉 <b>Hebat!</b> Kamu sudah menirukan semua gerakan. Terakhir, jangan lupa salam ke kanan dan kiri ya!';return;}showAct(a+1);},4000);};
+$('actnext').onclick=()=>{stopAct();showAct(a+1);};
+showAct(0);
+
+// Kuis
+const praise=["Hebat! Jawabanmu benar! ⭐","Pintar sekali! Kamu keren! 🌟","Mantap! Kamu sudah paham! 👏","Bagus sekali! Pertahankan ya! 🎉","Luar biasa! Kamu juara! 🏆"];
+const sh=arr=>arr.map(v=>[Math.random(),v]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);
+let qs,q,score,locked;
+function startQuiz(){qs=sh(D);q=0;score=0;renderQ();}
+function renderQ(){locked=false;const t=qs[q];$('qno').textContent=`Soal ${q+1} dari 5`;
+ $('qtext').innerHTML=`Pilih gambar yang cocok dengan gerakan: <b>${t.n}</b>`;
+ const o=sh([t,...sh(D.filter(x=>x!==t)).slice(0,2)]);
+ $('opts').innerHTML=o.map(x=>`<button class="opt" data-k="${x.k}" aria-label="gambar gerakan">${svg(x.k)}</button>`).join('');
+ $('fb').className='fb';$('fb').textContent='';$('qnext').disabled=true;$('qnext').textContent=q===4?'Lihat hasil ➜':'Soal berikutnya ➜';
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(b,t));}
+function pick(b,t){if(locked)return;locked=true;const right=b.dataset.k===t.k;
+ if(right){score++;b.classList.add('ok');$('fb').className='fb ok';$('fb').textContent=praise[q%praise.length];}
+ else{b.classList.add('bad');document.querySelector(`.opt[data-k="${t.k}"]`).classList.add('ok');$('fb').className='fb bad';$('fb').textContent='Belum tepat, tidak apa-apa. '+t.e+' Gambar yang benar sudah diberi warna hijau.';}
+ $('qnext').disabled=false;}
+$('qnext').onclick=()=>{if(q<4){q++;renderQ();}else{showResult();go(5);}};
+function showResult(){$('stars').textContent='⭐'.repeat(score)+'☆'.repeat(5-score);$('score').textContent=`Nilaimu ${score} dari 5`;
+ $('msg').textContent=score===5?'Luar biasa! Semua jawabanmu benar. Kamu siap mempraktikkan shalat!':score>=3?'Bagus! Sedikit lagi kamu hafal semua gerakan. Ayo berlatih lagi!':'Terima kasih sudah berusaha. Yuk lihat lagi materinya dan tirukan gerakannya!';}
+$('again').onclick=()=>{startQuiz();go(4);};
+document.querySelectorAll('#moods button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#moods button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('moodmsg').textContent='Terima kasih sudah bercerita. Semangat belajar shalat ya! 💛';});
+startQuiz();showResult();go(0);
+</script>
+</body>
+</html>
